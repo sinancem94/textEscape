@@ -9,6 +9,7 @@ public class Adventurer : MonoBehaviour
 
     public void SetUp()
     {
+        //buraya jsondan okunanlar gelecek
         stats.health = 100;
         stats.mental = 100;
     }
