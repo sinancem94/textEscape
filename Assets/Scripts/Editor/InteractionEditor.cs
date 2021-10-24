@@ -8,6 +8,7 @@ public class InteractionEditor : Editor
 {
     public override void OnInspectorGUI()
     {
+        //comment
         base.OnInspectorGUI();
         Interaction interaction = (Interaction)target;
 
@@ -22,3 +23,6 @@ public class InteractionEditor : Editor
 
     }
 }
+
+
+
