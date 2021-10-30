@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,9 +9,15 @@ public class Adventurer : MonoBehaviour
 
     public void SetUp()
     {
-        //buraya jsondan okunanlar gelecek
+        //ilk açılışta sabit değerler. Daha sonra buraya jsondan okunanlar gelmeli
         stats.health = 100;
         stats.mental = 100;
+
+        //luck, perception gibi değerler. Oyun başı verilecek ilk cevaplara göre değişecek.
+        stats.luck = 50;
+        stats.perception = 50;
+
+        
     }
 
     public void ApplyOutcome(PossibleOutcome outcome)
@@ -28,6 +34,8 @@ public class Adventurer : MonoBehaviour
                     break;
                 default:
                     break;
+
+                    //diğer statların değişkenleri eklenecek.
             }
         }
     }
@@ -37,4 +45,7 @@ public struct Stats
 {
     public float health;
     public float mental;
+    public float perception;
+    public float luck;
+
 }

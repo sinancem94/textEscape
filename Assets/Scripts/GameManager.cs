@@ -8,6 +8,7 @@ public class GameManager : Singleton<GameManager>
 {
     private UIManager _ui;
     private Adventurer _playerAdventurer;
+    private Inventory _inventory;
 
     List<InteractableObject> _currentInteractables;
 
@@ -21,10 +22,13 @@ public class GameManager : Singleton<GameManager>
         _ui = FindObjectOfType<UIManager>();
         _playerAdventurer = FindObjectOfType<Adventurer>();
         _currentInteractables = FindObjectsOfType<InteractableObject>().ToList();
+        _inventory = _playerAdventurer.GetComponent<Inventory>();
 
         string text = "deneme texti, biraz uzun olacaktir herhalde yaz yaz yaz yaz yaz";
         _ui.SetUp(text, _currentInteractables);
         _playerAdventurer.SetUp();
+        _inventory.SetUp();
+
     }
 
     private void LateUpdate()
