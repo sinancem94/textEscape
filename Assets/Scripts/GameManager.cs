@@ -22,7 +22,7 @@ public class GameManager : Singleton<GameManager>
         _ui = FindObjectOfType<UIManager>();
         _playerAdventurer = FindObjectOfType<Adventurer>();
         _currentInteractables = FindObjectsOfType<InteractableObject>().ToList();
-        _inventory = FindObjectOfType<Inventory>();
+        _inventory = _playerAdventurer.GetComponent<Inventory>();
 
         string text = "deneme texti, biraz uzun olacaktir herhalde yaz yaz yaz yaz yaz";
         _ui.SetUp(text, _currentInteractables);
