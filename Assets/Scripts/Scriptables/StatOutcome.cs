@@ -9,11 +9,11 @@ public class StatOutcome : ScriptableObject
     [SerializeField,Tooltip("Special name of outcome")]
     public string sName;
     [SerializeField,Header("The list of statoutcomes that will occur")]
-    public List<OutcomePair> outcomes;
+    public List<StatOutcomePair> outcomes;
 }
 
 [Serializable]
-public struct OutcomePair
+public struct StatOutcomePair
 {
     [Tooltip("The effected stat")]
     public AdventurerStats effectedStat;

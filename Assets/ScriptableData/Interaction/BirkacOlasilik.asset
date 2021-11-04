@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29f331ff2d6ed8341a1720bb2f671e11, type: 3}
+  m_Name: BirkacOlasilik
+  m_EditorClassIdentifier: 
+  interactionDescription: '%70Korkut %30 cesaretlendir, Item ver'
+  repeatable: 0
+  possibleOutcomes:
+  - possibility: 70
+    statOutcome: {fileID: 11400000, guid: 4fdcd3bfaabb08c44a9d2335f579b310, type: 2}
+    item: {fileID: 0}
+  - possibility: 30
+    statOutcome: {fileID: 11400000, guid: b28020f62867e2a4e86e1b6651b2f400, type: 2}
+    item: {fileID: 11400000, guid: 94d954da57852b047bffdfdd349ea2eb, type: 2}

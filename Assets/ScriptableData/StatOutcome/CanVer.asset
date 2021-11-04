@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f475590e2846ed4b9efb1bf73cdc8ce, type: 3}
   m_Name: CanVer
   m_EditorClassIdentifier: 
-  sName: ekmek buldun can aldin
+  sName: Health buff
   outcomes:
   - effectedStat: 0
     theChange: 25

@@ -3,24 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using UMath;
 
-public class InteractableObject : MonoBehaviour
+public abstract class InteractableObject : MonoBehaviour
 {
     [SerializeField]
     private Interaction interaction;
+    [SerializeField]
+    private Transform interactionPosition;
 
     private PossibleOutcome chosenOutcome;
+    private bool interacted = false;
 
-    public Interaction Interaction => interaction; 
+    public Interaction Interaction => interaction;
+    public PossibleOutcome Outcome => chosenOutcome;
+    public Vector3 Position => interactionPosition.position;
 
-    private void ChoseOutcome()
+    private PossibleOutcome ChoseOutcome()
     {
         int randChoosenOutcome = 0;
+
+        chosenOutcome = new PossibleOutcome();
 
         int outcomeCount = interaction.possibleOutcomes.Count;
         if (outcomeCount == 0)
         {
             Debug.Log("No outcome ?");
-            return;
+            return chosenOutcome;
         }
         else if (outcomeCount > 1)
         {
@@ -35,12 +42,25 @@ public class InteractableObject : MonoBehaviour
             randChoosenOutcome = UMath.UMath.ChooseRandomlyWithFrequency(outcomeIndexes, outcomeFreq, outcomeCount);
         }
 
-        chosenOutcome = interaction.possibleOutcomes[randChoosenOutcome];
+        return chosenOutcome = interaction.possibleOutcomes[randChoosenOutcome];
     }
+
+    #region public
+    public abstract void InteractionAnimation();
 
     public void GetInteracted()
     {
+        if (!interaction.repeatable)
+            if (!interacted)
+                interacted = true;
+            else
+                return;
+
+        //choose outcome
         ChoseOutcome();
-        GameManager.Instance.Interacted(chosenOutcome);
+        //apply it
+        GameManager.Instance.Interacted(this);
     }
+
+    #endregion
 }
