@@ -8,7 +8,6 @@ public class GameManager : Singleton<GameManager>
 {
     private UIManager _ui;
     private Adventurer _playerAdventurer;
-    private Inventory _inventory;
 
     List<InteractableObject> _currentInteractables;
 
@@ -22,12 +21,11 @@ public class GameManager : Singleton<GameManager>
         _ui = FindObjectOfType<UIManager>();
         _playerAdventurer = FindObjectOfType<Adventurer>();
         _currentInteractables = FindObjectsOfType<InteractableObject>().ToList();
-        _inventory = _playerAdventurer.GetComponent<Inventory>();
 
-        string text = "deneme texti, biraz uzun olacaktir herhalde yaz yaz yaz yaz yaz";
+        string text = $"Demo scene \n " +
+            $"{_currentInteractables.Count} secenek var.";
         _ui.SetUp(text, _currentInteractables);
         _playerAdventurer.SetUp();
-        _inventory.SetUp();
 
     }
 
@@ -36,15 +34,20 @@ public class GameManager : Singleton<GameManager>
         _ui.SetStatTexts(_playerAdventurer.stats);
     }
 
-    public void Interacted(PossibleOutcome outcome)
+    public void Interacted(InteractableObject interactedObje)
     {
-        Debug.Log($"interacted and outcome is {outcome.statOutcome.sName}");
-        _playerAdventurer.ApplyOutcome(outcome);
+        //Debug.Log($"interacted and stat outcome is {interactedObje.Outcome.statOutcome.sName}");
+
+        if (interactedObje.Interaction.repeatable == false)
+            _currentInteractables.Remove(interactedObje);
+
+        _playerAdventurer.Interact(interactedObje);
+
+        if (interactedObje.Outcome.item)
+            _ui.AddItem(interactedObje.Outcome.item);
+
+        _ui.SetInteractableList(_currentInteractables);
     }
 }
 
-public enum AdventurerStats
-{
-    Health,
-    MentalHealth
-}
+
